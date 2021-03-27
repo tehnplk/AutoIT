@@ -9,10 +9,12 @@ WinSetState("[CLASS:TMainForm]","",@SW_MAXIMIZE)
 ControlFocus("[CLASS:TMainForm]","","TdxDBGrid1")
 ConsoleWrite("Grid focus" & @CRLF)
 
+Global $click
+
 While 1
 
    $time = _NowTime()
-   $sec = 5000
+   $sec = 3000
    If $time > "11:00:00" Then
 	  $sec = 10000
    EndIf
@@ -61,6 +63,8 @@ Func _Click()
 		WinWaitNotActive("[CLASS:TfrmLabOrder]","")
 		#Sleep(5000)
 	EndIf
+	$click = $click +1
+	ConsoleWrite("Click = " & $click & "Times" & @CRLF)
 EndFunc
 
 Func _GridNext()
