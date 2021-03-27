@@ -17,10 +17,10 @@ While 1
 
    $time = _NowTime()
    If $time > "11:00:00" Then
-	  $sec = 30000
+	  $sec = 5000
    EndIf
    If $time > "13:00:00" Then
-	  $sec = 3600000
+	  $sec = 5000
    EndIf
 
    _Click()
@@ -36,11 +36,22 @@ Func _Click()
 	$btn_lab = ControlClick("[CLASS:TMainForm]","","TcxButton8")
 	If Not $btn_lab Then
 		ConsoleWrite("Not found Btn LAB" & @CRLF)
+		ConsoleWrite("_______________________________________" & @CRLF)
 		Sleep(10000)
 		Return False
-	EndIf
-	WinWait("[CLASS:TfrmLabOrder]","")
-	If WinExists("[CLASS:TfrmLabOrder]","") Then
+	 EndIf
+
+   Sleep(500)
+   If Not WinExists("[CLASS:TfrmLabOrder]","") Then
+	  ConsoleWrite("Not found Form LAB" & @CRLF)
+	  ConsoleWrite("_______________________________________" & @CRLF)
+	  Sleep(10000)
+	  Return False
+   EndIf
+
+   WinWait("[CLASS:TfrmLabOrder]","")
+
+   If WinExists("[CLASS:TfrmLabOrder]","") Then
 		#Sleep(2000)
 		WinActivate("[CLASS:TfrmLabOrder]","")
 		WinWaitActive("[CLASS:TfrmLabOrder]","")

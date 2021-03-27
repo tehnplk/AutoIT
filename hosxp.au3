@@ -1,0 +1,2 @@
+
+ControlClick("[CLASS:AgentAnim]","","","RIGHT")
