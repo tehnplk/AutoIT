@@ -2,6 +2,8 @@
 #include <Date.au3>
 
 ConsoleWrite("....BOT START...." & @CRLF)
+
+Global $start_time = _NowTime()
 Global $click
 Global $sec = 3000
 
@@ -17,10 +19,10 @@ While 1
 
    $time = _NowTime()
    If $time > "11:00:00" Then
-	  $sec = 5000
+	  $sec = 20000
    EndIf
    If $time > "13:00:00" Then
-	  $sec = 5000
+	  $sec = 60000
    EndIf
 
    _Click()
@@ -30,7 +32,7 @@ Exit
 
 Func _Click()
 	#Click  lab
-	ConsoleWrite("Do click ........." & $time & @CRLF)
+	ConsoleWrite("Do click ...... from " & $start_time & " to " & $time & @CRLF)
 	Sleep(1000)
 	#ConsoleWrite("Click" & @CRLF)
 	$btn_lab = ControlClick("[CLASS:TMainForm]","","TcxButton8")
@@ -39,19 +41,18 @@ Func _Click()
 		ConsoleWrite("_______________________________________" & @CRLF)
 		Sleep(10000)
 		Return False
-	 EndIf
+	EndIf
 
-   Sleep(500)
-   If Not WinExists("[CLASS:TfrmLabOrder]","") Then
+	Sleep(500)
+    If Not WinExists("[CLASS:TfrmLabOrder]","") Then
 	  ConsoleWrite("Not found Form LAB" & @CRLF)
 	  ConsoleWrite("_______________________________________" & @CRLF)
 	  Sleep(10000)
 	  Return False
-   EndIf
+    EndIf
 
-   WinWait("[CLASS:TfrmLabOrder]","")
-
-   If WinExists("[CLASS:TfrmLabOrder]","") Then
+	WinWait("[CLASS:TfrmLabOrder]","")
+	If WinExists("[CLASS:TfrmLabOrder]","") Then
 		#Sleep(2000)
 		WinActivate("[CLASS:TfrmLabOrder]","")
 		WinWaitActive("[CLASS:TfrmLabOrder]","")
