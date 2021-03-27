@@ -3,26 +3,25 @@
 
 ConsoleWrite("....BOT START...." & @CRLF)
 Global $click
+Global $sec = 3000
 
 WinActivate("[CLASS:TMainForm]","")
 WinWaitActive("[CLASS:TMainForm]")
 #WinSetOnTop("[CLASS:TMainForm]","",@SW_MAXIMIZE)
 WinSetState("[CLASS:TMainForm]","",@SW_MAXIMIZE)
 ControlFocus("[CLASS:TMainForm]","","TdxDBGrid1")
-
+MsgBox($MB_SYSTEMMODAL, "Auto BOT", "Bot will start in 8 second.", 8)
+Sleep(8000)
 
 While 1
 
    $time = _NowTime()
-   $sec = 3000
    If $time > "11:00:00" Then
-	  $sec = 15000
+	  $sec = 30000
    EndIf
    If $time > "13:00:00" Then
-	  $sec = 60000
+	  $sec = 3600000
    EndIf
-
-   ConsoleWrite("Time = " & $time & "  Speed Sec = " & $sec & @CRLF)
 
    _Click()
 
@@ -30,13 +29,14 @@ WEnd
 Exit
 
 Func _Click()
-	#Click ?? lab
+	#Click  lab
+	ConsoleWrite("Do click ........." & $time & @CRLF)
 	Sleep(1000)
 	#ConsoleWrite("Click" & @CRLF)
 	$btn_lab = ControlClick("[CLASS:TMainForm]","","TcxButton8")
 	If Not $btn_lab Then
 		ConsoleWrite("Not found Btn LAB" & @CRLF)
-		Sleep(5000)
+		Sleep(10000)
 		Return False
 	EndIf
 	WinWait("[CLASS:TfrmLabOrder]","")
@@ -63,7 +63,9 @@ Func _Click()
 		#Sleep(5000)
 	EndIf
 	$click = $click +1
-	ConsoleWrite("Click = " & $click & @CRLF)
+	ConsoleWrite("Click Success Count = " & $click & @CRLF)
+	ConsoleWrite("Wait for next in  " & $sec/1000 & " sec" & @CRLF)
+	ConsoleWrite("_______________________________________" & @CRLF)
 	Sleep($sec)
    _GridNext()
 EndFunc
