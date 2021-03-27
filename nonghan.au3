@@ -5,7 +5,7 @@ ConsoleWrite("....BOT START...." & @CRLF)
 
 Global $start_time = _NowTime()
 Global $click
-Global $sec = 3000
+Global $sec = 1000
 
 WinActivate("[CLASS:TMainForm]","")
 WinWaitActive("[CLASS:TMainForm]")
@@ -17,12 +17,20 @@ Sleep(8000)
 
 While 1
 
+   $sec = 3000
+
    $time = _NowTime()
    If $time > "11:00:00" Then
 	  $sec = 20000
    EndIf
    If $time > "13:00:00" Then
 	  $sec = 60000
+   EndIf
+   If $time > "20:00:00" Then
+	  $sec = 3600000
+   EndIf
+   If $time < "06:00:00" Then
+	  $sec = 3600000
    EndIf
 
    _Click()
