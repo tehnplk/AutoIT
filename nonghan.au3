@@ -17,9 +17,15 @@ Sleep(8000)
 
 While 1
 
-   $sec = 3000
+   $sec = 4000
 
    $time = _NowTime()
+
+   Local $ltime = StringLen($time)
+   If $ltime < 8 Then
+	   $time = '0' & $time
+	EndIf
+
    If $time > "11:00:00" Then
 	  $sec = 20000
    EndIf
@@ -29,9 +35,11 @@ While 1
    If $time > "20:00:00" Then
 	  $sec = 3600000
    EndIf
-   If $time < "06:00:00" Then
+   If $time < "06:15:00" Then
 	  $sec = 3600000
    EndIf
+
+   ConsoleWrite($time & @CRLF)
 
    _Click()
 
@@ -47,7 +55,7 @@ Func _Click()
 	If Not $btn_lab Then
 		ConsoleWrite("Not found Btn LAB" & @CRLF)
 		ConsoleWrite("_______________________________________" & @CRLF)
-		Sleep(10000)
+		Sleep(15000)
 		Return False
 	EndIf
 
@@ -55,7 +63,7 @@ Func _Click()
     If Not WinExists("[CLASS:TfrmLabOrder]","") Then
 	  ConsoleWrite("Not found Form LAB" & @CRLF)
 	  ConsoleWrite("_______________________________________" & @CRLF)
-	  Sleep(10000)
+	  Sleep(60000)
 	  Return False
     EndIf
 
