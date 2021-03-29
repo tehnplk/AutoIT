@@ -1,11 +1,11 @@
 #include <MsgBoxConstants.au3>
 #include <Date.au3>
 
-ConsoleWrite("....BOT START...." & @CRLF)
-
 Global $start_time = _NowTime()
 Global $click
 Global $sec = 1000
+
+ConsoleWrite("....BOT START...." & $start_time & @CRLF)
 
 WinActivate("[CLASS:TMainForm]","")
 WinWaitActive("[CLASS:TMainForm]")
@@ -13,7 +13,7 @@ WinWaitActive("[CLASS:TMainForm]")
 WinSetState("[CLASS:TMainForm]","",@SW_MAXIMIZE)
 ControlFocus("[CLASS:TMainForm]","","TdxDBGrid1")
 MsgBox($MB_SYSTEMMODAL, "Auto BOT", "Bot will start in 8 second.", 8)
-Sleep(8000)
+Sleep(3000)
 
 While 1
 
@@ -26,6 +26,9 @@ While 1
 	   $time = '0' & $time
 	EndIf
 
+   If $time > "08:00:00" Then
+	  $sec = 8000
+   EndIf
    If $time > "11:00:00" Then
 	  $sec = 20000
    EndIf
@@ -67,7 +70,7 @@ Func _Click()
 	  Return False
     EndIf
 
-	WinWait("[CLASS:TfrmLabOrder]","")
+	WinWait("[CLASS:TfrmLabOrder]","",10)
 	If WinExists("[CLASS:TfrmLabOrder]","") Then
 		#Sleep(2000)
 		WinActivate("[CLASS:TfrmLabOrder]","")
@@ -86,8 +89,8 @@ Func _Click()
 		   WinActivate("[CLASS:TfrmLabOrder]","")
 		   ControlClick("[CLASS:TfrmLabOrder]","","TcxButton12")
 		EndIf
-		WinWaitClose("[CLASS:TfrmLabOrder]","")
-		WinWaitNotActive("[CLASS:TfrmLabOrder]","")
+		WinWaitClose("[CLASS:TfrmLabOrder]","",10)
+		WinWaitNotActive("[CLASS:TfrmLabOrder]","",10)
 		#Sleep(5000)
 	EndIf
 	$click = $click +1
