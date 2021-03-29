@@ -74,7 +74,7 @@ Func _Click()
 	If WinExists("[CLASS:TfrmLabOrder]","") Then
 		#Sleep(2000)
 		WinActivate("[CLASS:TfrmLabOrder]","")
-		WinWaitActive("[CLASS:TfrmLabOrder]","")
+		WinWaitActive("[CLASS:TfrmLabOrder]","",10)
 		Sleep(1000)
 		ControlClick("[CLASS:TfrmLabOrder]","","TcxButton11")
 		Sleep(1000)
